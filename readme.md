@@ -334,16 +334,16 @@
     
 Thay `NET_ID` bằng id của provider network hoặc selfservice network. Để lấy id , sử dụng câu lệnh sau:
 
-    ```
-    # openstack network list
-    +--------------------------------------+-------------+--------------------------------------+
-    | ID                                   | Name        | Subnets                              |
-    +--------------------------------------+-------------+--------------------------------------+
-    | 3fe35ef2-417a-4db1-b807-6c38fc8530a3 | provider    | 0918e312-d5a5-4f82-8ae2-96c4d713a9c3 |
-    | 69de7fad-554e-4aac-808a-f9b079a36d79 | selfservice | d728890a-319b-414c-b994-0423db5dc277 |
-    +--------------------------------------+-------------+--------------------------------------+
-    
-    ```
+```
+openstack server list
++--------------------------------------+------+--------+----------------------------------------+--------+---------+
+| ID                                   | Name | Status | Networks                               | Image  | Flavor  |
++--------------------------------------+------+--------+----------------------------------------+--------+---------+
+| ec1e8fa9-4314-411b-b045-87c6597f28e4 | vm02 | ACTIVE | selfservice=172.16.1.5, 192.168.50.107 | cirros | m1.nano |
+| bd69fc45-47aa-4ec4-944e-22ef2471bd5a | vm01 | ACTIVE | provider=192.168.50.109                | cirros | m1.nano |
++--------------------------------------+------+--------+----------------------------------------+--------+---------+
+
+```
 
 - Kiểm tra trạng thái của máy ảo
 
@@ -360,14 +360,14 @@ Thay `NET_ID` bằng id của provider network hoặc selfservice network. Để
 
 - Ping tới máy ảo được cấp
 
-```
-# ping 192.168.50.109
-PING 192.168.50.109 (192.168.50.109) 56(84) bytes of data.
-64 bytes from 192.168.50.109: icmp_seq=1 ttl=63 time=3.89 ms
-64 bytes from 192.168.50.109: icmp_seq=2 ttl=63 time=1.56 ms
-64 bytes from 192.168.50.109: icmp_seq=3 ttl=63 time=1.01 ms
-^C
---- 192.168.50.109 ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 2002ms
-rtt min/avg/max/mdev = 1.014/2.158/3.895/1.249 ms
-```
+    ```
+    # ping 192.168.50.109
+    PING 192.168.50.109 (192.168.50.109) 56(84) bytes of data.
+    64 bytes from 192.168.50.109: icmp_seq=1 ttl=63 time=3.89 ms
+    64 bytes from 192.168.50.109: icmp_seq=2 ttl=63 time=1.56 ms
+    64 bytes from 192.168.50.109: icmp_seq=3 ttl=63 time=1.01 ms
+    ^C
+    --- 192.168.50.109 ping statistics ---
+    3 packets transmitted, 3 received, 0% packet loss, time 2002ms
+    rtt min/avg/max/mdev = 1.014/2.158/3.895/1.249 ms
+    ```

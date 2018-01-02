@@ -7,7 +7,13 @@
 
 ### IP Planning
 
-![ip_planning_lb.png](../images/ip_planning_lb.png)
+![ip_planning_lb.png](/img/ip_planning_lb.png)
+
+![ip_planning_ctl.png](/img/ip_planning_ctl.png)
+
+![ip_planning_net.png](/img/ip_planning_net.png)
+
+![ip_planning_com.png](/img/ip_planning_com.png)
 
 
 ## 1. Cài đặt trên các node LoadBalancer (Pacemaker, Corosync, Nginx)

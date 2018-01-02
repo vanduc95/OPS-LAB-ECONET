@@ -3,7 +3,8 @@
 - OS: Centos Minimal 7.4 - 64 bit
 
 ### Mô hình
-![Topo-chieungang_v1.4_IP_Planning.png](../images/Topo-chieungang_v1.4_IP_Planning.png)
+- 2 LoadBalancer, 3 Controller, 2 Network, 2 Compute
+- Database và RabbitMQ Cluster được cài đặt trên các node Controller.
 
 ### IP Planning
 

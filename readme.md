@@ -33,7 +33,32 @@
     curl -O https://raw.githubusercontent.com/congto/openstack-HA/master/scripts/lb-add-resources.sh
     bash lb-add-resources.sh
     ```
-- Sau khi cài đặt LB xong, thực hiện lệnh `crm_mon -1` xem cụm LB đã ok hay chưa, kết quả như ảnh này là ok: http://prntscr.com/fxz09n (các resources cùng trên 1 node, nếu chưa nằm trên 1 node thì khởi động lại 1 node bất kỳ trong 02 node và kiểm tra lại)
+- Sau khi cài đặt LB xong, thực hiện kiểm tra bằng lệnh sau, các resource cần cùng nằm trên 1 node lb1 hoặc lb2.
+    ```sh
+    [root@lb1 ~]# pcs status
+    Cluster name: ha_cluster
+    Stack: corosync
+    Current DC: lb2 (version 1.1.16-12.el7_4.5-94ff4df) - partition with quorum
+    Last updated: Tue Jan  2 16:47:53 2018
+    Last change: Tue Jan  2 16:26:45 2018 by root via cibadmin on lb1
+
+    2 nodes configured
+    3 resources configured
+
+    Online: [ lb1 lb2 ]
+
+    Full list of resources:
+
+     Virtual_IP_API (ocf::heartbeat:IPaddr2):       Started lb1
+     Virtual_IP_DB  (ocf::heartbeat:IPaddr2):       Started lb1
+     Web_Cluster    (ocf::heartbeat:nginx): Started lb1
+
+    Daemon Status:
+      corosync: active/enabled
+      pacemaker: active/enabled
+      pcsd: active/enabled
+
+    ```
 
 
 - Tải file `nginx.conf` về để khai báo backend cho các dịch vụ sau này. Tải về cả 02 máy LB.
@@ -44,7 +69,7 @@
 
 - Lưu ý: nếu IP của các node Controller và DB thay đổi theo mô hình của bạn, thì cần sửa trong file nginx.conf sau khi tải về.
 
-- Khởi động lại lần lượt 2 node LB và kiểm tra lại bằng lệnh `crm_mon -1`
+- Khởi động lại lần lượt 2 node LB và kiểm tra lại bằng lệnh `pcs status`
 
 
 ## 2. Cài đặt trên các node Controller

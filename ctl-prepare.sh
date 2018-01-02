@@ -130,9 +130,9 @@ LB2_HOSTNAME=lb2
 
 ##IP Address
 ### IP VIP
-IP_VIP_ADMIN=192.168.20.71
-IP_VIP_DB=10.10.10.71
-IP_VIP_API=10.10.20.71
+IP_VIP_ADMIN=192.168.20.60
+IP_VIP_DB=10.10.10.60
+IP_VIP_API=10.10.20.60
 
 ###IP cho bond0 cho cac may LoadBalancer
 LB1_IP_NIC1=10.10.20.61
@@ -218,8 +218,6 @@ function setup_config {
 
         done
 }
-
-
 
 
 function install_repo() {
@@ -308,11 +306,6 @@ do
     echocolor "Cai dat repo tren $IP_ADD"
     sleep 3
     ssh root@$IP_ADD "$(typeset -f); install_repo"  
-    # if [ "$IP_ADD" == "$CTL1_IP_NIC3" ]; then
-    #   echocolor "Cai dat khai_bao_host tren $IP_ADD"
-    #   sleep 3
-    #   ssh root@$IP_ADD "$(typeset -f); khai_bao_host"
-    # fi 
 done 
 
 # Cai dat NTP 

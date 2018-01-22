@@ -111,7 +111,7 @@ sleep 3
 
 echocolor "Tao key va copy key, bien khai bao sang cac node"
 sleep 3
-copykey
+# copykey
 setup_config
 
 

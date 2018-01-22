@@ -63,7 +63,7 @@ function com_neutron_config {
         
         ops_edit $com_neutron_conf oslo_concurrency lock_path /var/lib/neutron/tmp
         
-        ops_edit $com_linuxbridge_agent linux_bridge physical_interface_mappings provider:ens256
+        ops_edit $com_linuxbridge_agent linux_bridge physical_interface_mappings provider:ens224
         ops_edit $com_linuxbridge_agent vxlan enable_vxlan true
         ops_edit $com_linuxbridge_agent vxlan local_ip $LOCAL_IP
         ops_edit $com_linuxbridge_agent vxlan l2_population true

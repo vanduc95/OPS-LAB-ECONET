@@ -32,7 +32,7 @@ function com_nova_config {
         ops_edit $com_nova_conf DEFAULT enabled_apis osapi_compute,metadata
         ops_edit $com_nova_conf DEFAULT transport_url rabbit://openstack:$RABBIT_PASS@$MQ1_IP_NIC1:5672,openstack:$RABBIT_PASS@$MQ2_IP_NIC1:5672,openstack:$RABBIT_PASS@$MQ3_IP_NIC1:5672
         ops_edit $com_nova_conf DEFAULT auth_strategy keystone
-        ops_edit $com_nova_conf DEFAULT my_ip $(ip addr show dev ens256 scope global | grep "inet " | sed -e 's#.*inet ##g' -e 's#/.*##g')
+        ops_edit $com_nova_conf DEFAULT my_ip $(ip addr show dev ens160 scope global | grep "inet " | sed -e 's#.*inet ##g' -e 's#/.*##g')
         ops_edit $com_nova_conf DEFAULT use_neutron true
         ops_edit $com_nova_conf DEFAULT firewall_driver nova.virt.firewall.NoopFirewallDriver
 

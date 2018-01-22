@@ -115,7 +115,7 @@ cat <<EOF > /etc/my.cnf.d/server.cnf
 [galera]
 wsrep_on=ON
 wsrep_provider=/usr/lib64/galera/libgalera_smm.so
-wsrep_cluster_address="gcomm://192.168.20.71,192.168.20.72,192.168.20.73,$DB1_IP_NIC2,$DB2_IP_NIC2,$DB3_IP_NIC2"
+wsrep_cluster_address="gcomm://$DB1_IP_NIC2,$DB2_IP_NIC2,$DB3_IP_NIC2"
 binlog_format=row
 default_storage_engine=InnoDB
 innodb_autoinc_lock_mode=2

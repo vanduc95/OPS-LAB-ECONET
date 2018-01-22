@@ -64,7 +64,8 @@ function neutron_config {
         ops_edit $ctl_neutron_conf DEFAULT notify_nova_on_port_status_changes True
         ops_edit $ctl_neutron_conf DEFAULT notify_nova_on_port_data_changes True  
         ops_edit $ctl_neutron_conf DEFAULT allow_overlapping_ips True 
-        ops_edit $ctl_nova_conf DEFAULT transport_url rabbit://openstack:$RABBIT_PASS@$MQ1_IP_NIC1:5672,openstack:$RABBIT_PASS@$MQ2_IP_NIC1:5672,openstack:$RABBIT_PASS@$MQ3_IP_NIC1:5672
+        ops_edit $ctl_neutron_conf DEFAULT transport_url rabbit://openstack:$RABBIT_PASS@$MQ1_IP_NIC1:5672,openstack:$RABBIT_PASS@$MQ2_IP_NIC1:5672,openstack:$RABBIT_PASS@$MQ3_IP_NIC1:5672
+        ops_edit $ctl_neutron_conf DEFAULT dhcp_agents_per_network 2
                 
         ops_edit $ctl_neutron_conf database connection  mysql+pymysql://neutron:$PASS_DATABASE_NEUTRON@$IP_VIP_API/neutron
         

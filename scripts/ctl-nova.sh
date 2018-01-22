@@ -109,7 +109,7 @@ function nova_config {
         ops_edit $ctl_nova_conf vnc enabled true   
         ops_edit $ctl_nova_conf vnc vncserver_listen \$my_ip
         ops_edit $ctl_nova_conf vnc vncserver_proxyclient_address \$my_ip
-        ops_edit $ctl_nova_conf vnc novncproxy_host \$my_ip
+        # ops_edit $ctl_nova_conf vnc novncproxy_host \$my_ip
         
         ops_edit $ctl_nova_conf glance api_servers http://$IP_VIP_API:9292
         

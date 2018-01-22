@@ -8,13 +8,13 @@
 
 ### IP Planning
 
-![ip_planning_lb.png](/img/ip_planning_lb.png)
+![ip_planning_lb.png](img/ip_planning_lb.png)
 
-![ip_planning_ctl.png](/img/ip_planning_ctl.png)
+![ip_planning_ctl.png](img/ip_planning_ctl.png)
 
-![ip_planning_net.png](/img/ip_planning_net.png)
+![ip_planning_net.png](img/ip_planning_net.png)
 
-![ip_planning_com.png](/img/ip_planning_com.png)
+![ip_planning_com.png](img/ip_planning_com.png)
 
 
 ## 1. Cài đặt trên các node LoadBalancer (Pacemaker, Corosync, Nginx)
@@ -24,13 +24,13 @@
 - Đứng trên máy chủ `lb1`, thực hiện script sau. Kết thúc script thì cả 2 node sẽ được cài đặt pacemaker, corosync và cấu hình cluster. Trong quá trình cài cần nhập mật khẩu root của 02 máy loadbalancer
 - Lưu ý: Nếu các IP của bạn khác với các IP Planning thì cần sửa script trước khi thực hiện.
     ```sh
-    curl -O https://raw.githubusercontent.com/congto/openstack-HA/master/scripts/lb-install.sh
+    curl -Ok https://git.econet.vn/projects/OP/repos/openstack-pike-ha-centos/raw/scripts/lb-install.sh
     bash lb-install.sh
     ```
   
 - Sau khi cấu hình cluster xong, thực hiện add resources cho pacemaker
     ```sh
-    curl -O https://raw.githubusercontent.com/congto/openstack-HA/master/scripts/lb-add-resources.sh
+    curl -Ok https://git.econet.vn/projects/OP/repos/openstack-pike-ha-centos/raw/scripts/lb-add-resources.sh
     bash lb-add-resources.sh
     ```
 - Sau khi cài đặt LB xong, thực hiện kiểm tra bằng lệnh sau, các resource cần cùng nằm trên 1 node lb1 hoặc lb2.
@@ -61,10 +61,12 @@
     ```
 
 
-- Tải file `nginx.conf` về để khai báo backend cho các dịch vụ sau này. Tải về cả 02 máy LB.
+- Tải file `nginx.conf` về để khai báo backend cho các dịch vụ sau này. Tải về cả 02 máy LB và copy trong thư mục `/etc/nginx/nginx.conf`
 
     ```sh
-    wget -O /ect/nginx/nginx.conf https://raw.githubusercontent.com/congto/openstack-HA/master/scripts/conf/nginx.conf
+    curl -Ok https://git.econet.vn/projects/OP/repos/openstack-pike-ha-centos/raw/scripts/nginx.conf
+
+    cp nginx.conf /etc/nginx/nginx.conf
     ```
 
 - Lưu ý: nếu IP của các node Controller và DB thay đổi theo mô hình của bạn, thì cần sửa trong file nginx.conf sau khi tải về.
@@ -79,7 +81,7 @@
 - Lưu ý: Nếu các IP của bạn khác với các IP Planning thì cần sửa script trước khi thực hiện.
 
     ```sh
-    curl -O https://raw.githubusercontent.com/congto/openstack-HA/master/scripts/db-install.sh
+    curl -Ok https://git.econet.vn/projects/OP/repos/openstack-pike-ha-centos/raw/scripts/db-install.sh
     bash db-install.sh
     ```
  
@@ -100,7 +102,7 @@
 - Lưu ý: Nếu các IP của bạn khác với các IP Planning thì cần sửa script trước khi thực hiện.
 
     ```sh
-    curl -O https://raw.githubusercontent.com/congto/openstack-HA/master/scripts/rabbitmq-install.sh
+    curl -Ok https://git.econet.vn/projects/OP/repos/openstack-pike-ha-centos/raw/scripts/rabbitmq-install.sh
     bash rabbitmq-install.sh
     ```
   
@@ -122,7 +124,7 @@
 - Lưu ý: Nếu các IP của bạn khác với các IP Planning thì cần sửa script trước khi thực hiện.
 
     ```sh
-    curl -O https://raw.githubusercontent.com/congto/openstack-HA/master/scripts/ctl-prepare.sh
+    curl -Ok https://git.econet.vn/projects/OP/repos/openstack-pike-ha-centos/raw/scripts/ctl-prepare.sh
     bash ctl-prepare.sh
     ```
 
@@ -132,7 +134,7 @@
 - Script tự động thực hiện cài đặt từ xa trên `ctl2` và `ctl3`
 
     ```sh
-    curl -O https://raw.githubusercontent.com/congto/openstack-HA/master/scripts/ctl-keystone.sh
+    curl -Ok https://git.econet.vn/projects/OP/repos/openstack-pike-ha-centos/raw/scripts/ctl-keystone.sh
     bash ctl-keystone.sh
     ```
 - Verify keystone
@@ -156,7 +158,7 @@
 - Script tự động thực hiện cài đặt từ xa trên `ctl2` và `ctl3`
 
     ```sh
-    curl -O https://raw.githubusercontent.com/congto/openstack-HA/master/scripts/ctl-glance.sh
+    curl -Ok https://git.econet.vn/projects/OP/repos/openstack-pike-ha-centos/raw/scripts/ctl-glance.sh
     bash ctl-glance.sh
     ```
 - Verify Glance
@@ -177,7 +179,7 @@
 - Script tự động thực hiện cài đặt từ xa trên `ctl2` và `ctl3`
 
     ```sh
-    curl -O https://raw.githubusercontent.com/congto/openstack-HA/master/scripts/ctl-nova.sh
+    curl -Ok https://git.econet.vn/projects/OP/repos/openstack-pike-ha-centos/raw/scripts/ctl-nova.sh
     bash ctl-nova.sh
     ```
 
@@ -187,7 +189,7 @@
 - Script tự động thực hiện cài đặt từ xa trên `ctl2` và `ctl3`
 
     ```sh
-    curl -O https://raw.githubusercontent.com/congto/openstack-HA/master/scripts/ctl-neutron.sh
+    curl -Ok https://git.econet.vn/projects/OP/repos/openstack-pike-ha-centos/raw/scripts/ctl-neutron.sh
     bash ctl-neutron.sh
     ```
   
@@ -196,27 +198,27 @@
 ### 3.1. Thực hiện trên Network1
 - Thực hiện cài đặt các gói chuẩn bị
     ```sh
-    curl -O https://raw.githubusercontent.com/congto/openstack-HA/master/scripts/ctl-prepare.sh
-    bash ctl-prepare.sh
+    curl -Ok https://git.econet.vn/projects/OP/repos/openstack-pike-ha-centos/raw/scripts/net-prepare.sh
+    bash net-prepare.sh
     ```
 
 - Thực hiện cài đặt neutron
     ```sh
-    curl -O https://raw.githubusercontent.com/congto/openstack-HA/master/scripts/ctl-neutron.sh
-    bash ctl-neutron.sh
+    curl -Ok https://git.econet.vn/projects/OP/repos/openstack-pike-ha-centos/raw/scripts/net-neutron.sh
+    bash net-neutron.sh
     ```
 
 ### 3.2. Thực hiện trên Network2
 - Thực hiện cài đặt các gói chuẩn bị
     ```sh
-    curl -O https://raw.githubusercontent.com/congto/openstack-HA/master/scripts/ctl-prepare.sh
-    bash ctl-prepare.sh
+    curl -Ok https://git.econet.vn/projects/OP/repos/openstack-pike-ha-centos/raw/scripts/net-prepare.sh
+    bash net-prepare.sh
     ```
 
 - Thực hiện cài đặt neutron
     ```sh
-    curl -O https://raw.githubusercontent.com/congto/openstack-HA/master/scripts/ctl-neutron.sh
-    bash ctl-neutron.sh
+    curl -Ok https://git.econet.vn/projects/OP/repos/openstack-pike-ha-centos/raw/scripts/net-prepare.sh
+    bash net-prepare.sh
     ```
 
 ## 4. Cài đặt trên các node Compute
@@ -224,40 +226,40 @@
 ### 4.1. Thực hiện trên Compute1
 - Thực hiện cài đặt các gói chuẩn bị
     ```sh
-    curl -O https://raw.githubusercontent.com/congto/openstack-HA/master/scripts/ctl-prepare.sh
-    bash ctl-prepare.sh
+    curl -Ok https://git.econet.vn/projects/OP/repos/openstack-pike-ha-centos/raw/scripts/com-prepare.sh
+    bash com-prepare.sh
     ```
 
 - Thực hiện cài đặt nova
     ```sh
-    curl -O https://raw.githubusercontent.com/congto/openstack-HA/master/scripts/ctl-neutron.sh
-    bash ctl-neutron.sh
+    curl -Ok https://git.econet.vn/projects/OP/repos/openstack-pike-ha-centos/raw/scripts/com-nova.sh
+    bash com-nova.sh
     ```
 
 - Thực hiện cài đặt neutron
     ```sh
-    curl -O https://raw.githubusercontent.com/congto/openstack-HA/master/scripts/ctl-neutron.sh
-    bash ctl-neutron.sh
+    curl -Ok https://git.econet.vn/projects/OP/repos/openstack-pike-ha-centos/raw/scripts/com-neutron.sh
+    bash com-neutron.sh
     ```
 
 
 ### 4.2. Thực hiện trên Compute2
 - Thực hiện cài đặt các gói chuẩn bị
     ```sh
-    curl -O https://raw.githubusercontent.com/congto/openstack-HA/master/scripts/ctl-prepare.sh
-    bash ctl-prepare.sh
+    curl -Ok https://git.econet.vn/projects/OP/repos/openstack-pike-ha-centos/raw/scripts/com-prepare.sh
+    bash com-prepare.sh
     ```
 
 - Thực hiện cài đặt nova
     ```sh
-    curl -O https://raw.githubusercontent.com/congto/openstack-HA/master/scripts/ctl-neutron.sh
-    bash ctl-neutron.sh
+    curl -Ok https://git.econet.vn/projects/OP/repos/openstack-pike-ha-centos/raw/scripts/com-nova.sh
+    bash com-nova.sh
     ```
 
 - Thực hiện cài đặt neutron
     ```sh
-    curl -O https://raw.githubusercontent.com/congto/openstack-HA/master/scripts/ctl-neutron.sh
-    bash ctl-neutron.sh
+    curl -Ok https://git.econet.vn/projects/OP/repos/openstack-pike-ha-centos/raw/scripts/com-neutron.sh
+    bash com-neutron.sh
     ```
     
 ## 5. Kiểm tra
@@ -361,20 +363,27 @@
 
     ```
     openstack server create vm01 --flavor m1.nano --image cirros \
-    --nic net-id=NET_ID --security-group default 
+    --nic net-id=NET_ID --security-group SECURITY_ID 
     ```
     
-Thay `NET_ID` bằng id của provider network hoặc selfservice network. Để lấy id , sử dụng câu lệnh sau:
+Thay `NET_ID` bằng id của provider network hoặc selfservice network. Để lấy `NET_ID` và `SECURITY_ID` , sử dụng câu lệnh sau:
 
 ```
-openstack server list
-+--------------------------------------+------+--------+----------------------------------------+--------+---------+
-| ID                                   | Name | Status | Networks                               | Image  | Flavor  |
-+--------------------------------------+------+--------+----------------------------------------+--------+---------+
-| ec1e8fa9-4314-411b-b045-87c6597f28e4 | vm02 | ACTIVE | selfservice=172.16.1.5, 192.168.50.107 | cirros | m1.nano |
-| bd69fc45-47aa-4ec4-944e-22ef2471bd5a | vm01 | ACTIVE | provider=192.168.50.109                | cirros | m1.nano |
-+--------------------------------------+------+--------+----------------------------------------+--------+---------+
+openstack network list
++--------------------------------------+-------------+--------------------------------------+
+| ID                                   | Name        | Subnets                              |
++--------------------------------------+-------------+--------------------------------------+
+| b77ffc7f-3b4e-44de-9355-1e848f103288 | provider    | 47252530-fbd9-44c6-879b-d51ce0f9ce51 |
+| d04fba4b-bbe2-44d4-85af-c83dc5a60f14 | selfservice | a3aa438a-ffd6-4cce-bb11-71f8ff6c8dbd |
++--------------------------------------+-------------+--------------------------------------+
 
+openstack security group list
++--------------------------------------+---------+------------------------+----------------------------------+
+| ID                                   | Name    | Description            | Project                          |
++--------------------------------------+---------+------------------------+----------------------------------+
+| 7cf8cc03-4000-4dc5-9d7e-e6a8059801d1 | default | Default security group | db25fdd692b8419791aeb92019b2c4fe |
+| a1622c25-4b35-4d17-83ed-ec9acff7fc00 | default | Default security group | 043cf0ecc0b8462bb15dcc55b11df1a9 |
++--------------------------------------+---------+------------------------+----------------------------------+
 ```
 
 - Kiểm tra trạng thái của máy ảo
